@@ -4,7 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mert Erdogan - Game Developer Portfolio</title>
+    <!-- Google Fonts: Fredoka for headings, Outfit for body text -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
+        :root {
+            /* Visual Identity Color Tokens from PDF */
+            --bg-cream: #fffad9;
+            --bg-purple: #572862;
+            --bg-white: #ffffff;
+            --accent-yellow: #ffde59;
+            --accent-pink: #f979b2;
+            --accent-green: #2e584d;
+            --accent-brown: #2e2826;
+            --color-black: #171615;
+            
+            /* Game UI Style Defaults */
+            --border-width: 3px;
+            --border-width-sm: 2px;
+            --border-color: #171615;
+            --border-radius: 12px;
+            --border-radius-pill: 50px;
+            --shadow-offset: 6px;
+            
+            /* Standard Grid / Container Sizes */
+            --container-width: 1200px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -12,952 +44,1844 @@
         }
 
         body {
-            background: linear-gradient(135deg, #0f0f23 0%, #1a1a3a 50%, #2d1b69 100%);
-            color: #ffffff;
-            font-family: 'Arial', sans-serif;
+            background-color: var(--bg-cream);
+            color: var(--color-black);
+            font-family: 'Outfit', sans-serif;
             line-height: 1.6;
             overflow-x: hidden;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+        /* CUSTOM SCROLLBAR */
+        ::-webkit-scrollbar {
+            width: 14px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-cream);
+            border-left: var(--border-width) solid var(--color-black);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--bg-purple);
+            border: var(--border-width) solid var(--color-black);
+            border-radius: var(--border-radius);
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-pink);
         }
 
-        /* Animated background particles */
-        .particles {
+        /* COMMON LAYOUT CONTAINERS */
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .section-padding {
+            padding: 100px 0;
+        }
+
+        /* TEXT TYPOGRAPHY */
+        h1, h2, h3, h4, h5, h6, .font-heading {
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 700;
+        }
+
+        /* RETRO TEXT SHADOWS */
+        .text-retro-shadow-white {
+            color: var(--color-black);
+            text-shadow: 2px 2px 0px var(--bg-white), 4px 4px 0px var(--bg-purple);
+        }
+
+        .text-retro-shadow-yellow {
+            color: var(--color-black);
+            text-shadow: 2px 2px 0px var(--accent-yellow), 4px 4px 0px var(--bg-purple);
+        }
+
+        .text-retro-shadow-pink {
+            color: var(--color-black);
+            text-shadow: 2px 2px 0px var(--accent-pink), 4px 4px 0px var(--bg-purple);
+        }
+
+        /* RETRO SOLID CARDS */
+        .card-retro {
+            background-color: var(--bg-white);
+            border: var(--border-width) solid var(--color-black);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-offset) var(--shadow-offset) 0px var(--color-black);
+            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.2s ease;
+        }
+
+        .card-retro:hover {
+            transform: translate(-3px, -3px);
+            box-shadow: calc(var(--shadow-offset) + 3px) calc(var(--shadow-offset) + 3px) 0px var(--color-black);
+        }
+
+        /* RETRO BUTTONS */
+        .btn-retro {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background-color: var(--bg-cream);
+            color: var(--color-black);
+            border: var(--border-width) solid var(--color-black);
+            border-radius: var(--border-radius-pill);
+            box-shadow: 4px 4px 0px var(--color-black);
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            user-select: none;
+        }
+
+        .btn-retro:hover {
+            background-color: var(--accent-yellow);
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px var(--color-black);
+        }
+
+        .btn-retro:active {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px var(--color-black);
+        }
+
+        .btn-retro.btn-purple {
+            background-color: var(--bg-purple);
+            color: var(--bg-white);
+        }
+        .btn-retro.btn-purple:hover {
+            background-color: var(--accent-pink);
+            color: var(--color-black);
+        }
+
+        .btn-retro.btn-yellow {
+            background-color: var(--accent-yellow);
+        }
+        .btn-retro.btn-yellow:hover {
+            background-color: var(--bg-white);
+        }
+
+        /* RETRO STICKER BADGES */
+        .badge-retro {
+            display: inline-block;
+            padding: 6px 16px;
+            border: var(--border-width-sm) solid var(--color-black);
+            border-radius: var(--border-radius-pill);
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--color-black) !important;
+            box-shadow: 2px 2px 0px var(--color-black);
+            margin: 4px;
+            background-color: var(--bg-white);
+        }
+
+        .badge-retro.badge-yellow { background-color: var(--accent-yellow); }
+        .badge-retro.badge-pink { background-color: var(--accent-pink); }
+        .badge-retro.badge-purple { background-color: var(--bg-purple); color: var(--bg-white) !important; }
+        .badge-retro.badge-cream { background-color: var(--bg-cream); }
+
+        /* FLOATING NAVIGATION */
+        .nav-header {
             position: fixed;
-            top: 0;
-            left: 0;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            width: 90%;
+            max-width: 800px;
+            background-color: rgba(255, 255, 255, 0.95);
+            border: var(--border-width) solid var(--color-black);
+            border-radius: var(--border-radius-pill);
+            box-shadow: 6px 6px 0px var(--color-black);
+            padding: 8px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(8px);
+        }
+
+        .nav-logo {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.3rem;
+            color: var(--color-black);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav-logo span {
+            background-color: var(--bg-purple);
+            color: var(--accent-yellow);
+            border: 2px solid var(--color-black);
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 8px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--color-black);
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 500;
+            font-size: 0.9rem;
+            padding: 6px 12px;
+            border-radius: var(--border-radius-pill);
+            border: 2px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .nav-link:hover {
+            border-color: var(--color-black);
+            background-color: var(--bg-cream);
+        }
+
+        .nav-link.active {
+            background-color: var(--bg-purple);
+            color: var(--bg-cream);
+            border-color: var(--color-black);
+        }
+
+        /* SECTION HEADER styling */
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            display: inline-block;
+            position: relative;
+            z-index: 1;
+            margin-bottom: 12px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: -10px;
+            right: -10px;
+            height: 12px;
+            background-color: var(--accent-yellow);
+            z-index: -1;
+            border-radius: 4px;
+            transform: rotate(-1.5deg);
+        }
+
+        /* HERO SECTION (Split Widescreen layout inspired by Page 1) */
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 120px;
+            padding-bottom: 60px;
+            position: relative;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1.8fr;
+            gap: 40px;
+            align-items: stretch;
+            width: 100%;
+        }
+
+        /* Left Side: White Card with Profile Frame & Links */
+        .hero-left-card {
+            background-color: var(--bg-white);
+            border: var(--border-width) solid var(--color-black);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-offset) var(--shadow-offset) 0px var(--color-black);
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            text-align: center;
+        }
+
+        .profile-frame {
+            width: 220px;
+            height: 220px;
+            border: var(--border-width) solid var(--color-black);
+            border-radius: var(--border-radius);
+            background-color: var(--bg-cream);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+            box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .profile-frame img {
             width: 100%;
             height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        .profile-frame:hover {
+            transform: translate(-3px, -3px);
+            box-shadow: calc(var(--shadow-offset) + 3px) calc(var(--shadow-offset) + 3px) 0px var(--color-black);
+        }
+        .profile-frame:hover img {
+            transform: scale(1.05);
+        }
+
+        .hero-links-list {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .hero-link-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--color-black);
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 600;
+            font-size: 1.2rem;
+            padding: 8px 16px;
+            background-color: var(--bg-cream);
+            border: var(--border-width-sm) solid var(--color-black);
+            border-radius: var(--border-radius);
+            box-shadow: 3px 3px 0px var(--color-black);
+            transition: all 0.15s ease;
+        }
+
+        .hero-link-item:hover {
+            background-color: var(--accent-yellow);
+            transform: translate(-2px, -2px);
+            box-shadow: 5px 5px 0px var(--color-black);
+        }
+
+        .hero-link-item:active {
+            transform: translate(1px, 1px);
+            box-shadow: 2px 2px 0px var(--color-black);
+        }
+
+        /* Right Side: Purple Slide block */
+        .hero-right-panel {
+            background-color: var(--bg-purple);
+            border: var(--border-width) solid var(--color-black);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-offset) var(--shadow-offset) 0px var(--color-black);
+            padding: 60px 48px;
+            color: var(--bg-white);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Background grid accents */
+        .hero-right-panel::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: radial-gradient(var(--color-black) 20%, transparent 20%);
+            background-size: 24px 24px;
+            opacity: 0.15;
+            pointer-events: none;
+        }
+
+        .hero-name-label {
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            color: var(--accent-yellow);
+            text-shadow: 3px 3px 0px var(--color-black), 5px 5px 0px var(--accent-pink);
+            position: relative;
+        }
+
+        .hero-tagline {
+            font-size: 1.6rem;
+            font-family: 'Fredoka', sans-serif;
+            color: var(--bg-cream);
+            margin-bottom: 30px;
+            line-height: 1.4;
+        }
+
+        .hero-desc {
+            font-size: 1.15rem;
+            color: var(--bg-white);
+            margin-bottom: 24px;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        .hero-badges-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 16px;
+        }
+
+        /* FEATURED SLIDES CONTAINER (Widescreen Slide Panels) */
+        .featured-slide-section {
+            padding: 80px 0;
+        }
+
+        .slide-panel {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border: var(--border-width) solid var(--color-black);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 10px 10px 0px var(--color-black);
+            background-color: var(--bg-white);
+            margin-bottom: 80px;
+            min-height: 520px;
+        }
+
+        /* Alternating slide sides */
+        .slide-panel.reverse {
+            grid-template-columns: 1fr 1fr;
+        }
+        
+        /* The colored block column */
+        .slide-content-block {
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+
+        .slide-content-block.purple {
+            background-color: var(--bg-purple);
+            color: var(--bg-white);
+        }
+
+        .slide-content-block.green {
+            background-color: var(--accent-green);
+            color: var(--bg-white);
+        }
+
+        .slide-content-block.brown {
+            background-color: var(--accent-brown);
+            color: var(--bg-white);
+        }
+
+        /* The media display column (Iframe/Images) */
+        .slide-media-block {
+            background-color: var(--bg-cream);
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            position: relative;
+            border-left: var(--border-width) solid var(--color-black);
+        }
+
+        .slide-panel.reverse .slide-media-block {
+            border-left: none;
+            border-right: var(--border-width) solid var(--color-black);
+            order: -1;
+        }
+
+        .media-container-retro {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background-color: var(--color-black);
+            border: var(--border-width) solid var(--color-black);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 5px 5px 0px var(--color-black);
+            position: relative;
+        }
+
+        .media-container-retro iframe,
+        .media-container-retro img {
+            width: 100%;
+            height: 100%;
+            border: none;
+            object-fit: cover;
+        }
+
+        .media-label {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1rem;
+            color: var(--color-black);
+            background-color: var(--accent-yellow);
+            border: var(--border-width-sm) solid var(--color-black);
+            border-radius: var(--border-radius-pill);
+            padding: 4px 16px;
+            box-shadow: 2px 2px 0px var(--color-black);
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 10;
+        }
+
+        .slide-links {
+            display: flex;
+            gap: 12px;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .slide-title {
+            font-size: 2.2rem;
+            margin-bottom: 8px;
+            line-height: 1.2;
+        }
+
+        .slide-content-block.purple .slide-title {
+            color: var(--accent-yellow);
+            text-shadow: 2px 2px 0px var(--color-black), 4px 4px 0px var(--accent-pink);
+        }
+
+        .slide-content-block.green .slide-title {
+            color: var(--bg-cream);
+            text-shadow: 2px 2px 0px var(--color-black);
+        }
+
+        .slide-content-block.brown .slide-title {
+            color: var(--accent-yellow);
+            text-shadow: 2px 2px 0px var(--color-black);
+        }
+
+        .slide-tag {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 0.95rem;
+            color: var(--accent-yellow);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .slide-content-block.purple .slide-tag { color: var(--accent-pink); }
+        .slide-content-block.green .slide-tag { color: var(--accent-yellow); }
+        .slide-content-block.brown .slide-tag { color: var(--bg-cream); }
+
+        .slide-desc {
+            font-size: 1.05rem;
+            margin-bottom: 24px;
+            opacity: 0.9;
+        }
+
+        .slide-bullet-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .slide-bullet-list li {
+            position: relative;
+            padding-left: 24px;
+            font-size: 1.05rem;
+        }
+
+        .slide-bullet-list li::before {
+            content: '⭐';
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 0.9rem;
+        }
+
+        .slide-content-block.green .slide-bullet-list li::before {
+            content: '🐠';
+        }
+        .slide-content-block.brown .slide-bullet-list li::before {
+            content: '🚇';
+        }
+
+        /* GRID CARDS STYLING (For Jams, Prototypes, Open Source) */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .cards-grid-4col {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 24px;
+        }
+
+        .project-retro-card {
+            background-color: var(--bg-white);
+            border: var(--border-width) solid var(--color-black);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-offset) var(--shadow-offset) 0px var(--color-black);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .project-retro-card:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: calc(var(--shadow-offset) + 4px) calc(var(--shadow-offset) + 4px) 0px var(--color-black);
+        }
+
+        .card-img-container {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            border-bottom: var(--border-width) solid var(--color-black);
+            position: relative;
+            background-color: var(--bg-cream);
+            overflow: hidden;
+        }
+
+        .card-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .project-retro-card:hover .card-img-container img {
+            transform: scale(1.05);
+        }
+
+        .card-body-content {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex-grow: 1;
+        }
+
+        .card-badge-line {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            margin-bottom: 12px;
+        }
+
+        .card-title {
+            font-size: 1.4rem;
+            color: var(--color-black);
+            margin-bottom: 8px;
+        }
+
+        .card-desc {
+            font-size: 0.95rem;
+            color: var(--color-black);
+            opacity: 0.8;
+            margin-bottom: 16px;
+            flex-grow: 1;
+        }
+
+        .card-footer-action {
+            margin-top: auto;
+        }
+
+        /* SPECIAL JAM CARDS (Alternating colors) */
+        .project-retro-card.jam-card-0 { border-color: var(--color-black); }
+        .project-retro-card.jam-card-0 .card-img-container { background-color: var(--accent-pink); }
+        
+        /* TIMELINE SECTION (Education & Experience) */
+        .timeline-container {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 0;
+        }
+
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 4px;
+            background-color: var(--color-black);
+            border: 1px dashed var(--bg-cream);
+            transform: translateX(-50%);
+        }
+
+        .timeline-node {
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 50%;
+            position: relative;
+            margin-bottom: 60px;
+            width: 100%;
+        }
+
+        .timeline-node.left-side {
+            justify-content: flex-start;
+            padding-right: 0;
+            padding-left: 50%;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            top: 24px;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 24px;
+            height: 24px;
+            background-color: var(--accent-yellow);
+            border: var(--border-width) solid var(--color-black);
+            border-radius: 50%;
+            z-index: 10;
+            box-shadow: 2px 2px 0px var(--color-black);
+        }
+
+        .timeline-node.left-side .timeline-marker {
+            background-color: var(--accent-pink);
+        }
+
+        .timeline-content-card {
+            width: 90%;
+            max-width: 400px;
+            background-color: var(--bg-white);
+            border: var(--border-width) solid var(--color-black);
+            border-radius: var(--border-radius);
+            box-shadow: 5px 5px 0px var(--color-black);
+            padding: 24px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline-node:not(.left-side) .timeline-content-card {
+            margin-right: 30px;
+        }
+
+        .timeline-node.left-side .timeline-content-card {
+            margin-left: 30px;
+        }
+
+        .timeline-date {
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 600;
+            color: var(--accent-pink);
+            font-size: 0.95rem;
+            margin-bottom: 6px;
+        }
+        
+        .timeline-node.left-side .timeline-date {
+            color: var(--bg-purple);
+        }
+
+        .timeline-role {
+            font-size: 1.25rem;
+            margin-bottom: 4px;
+        }
+
+        .timeline-org {
+            font-weight: 600;
+            color: var(--color-black);
+            margin-bottom: 12px;
+            font-size: 1rem;
+        }
+
+        .timeline-body {
+            font-size: 0.95rem;
+            opacity: 0.85;
+        }
+
+        /* GALLERY & STACKS (For Community Events) */
+        .gallery-block {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .event-card {
+            background-color: var(--bg-white);
+            border: var(--border-width) solid var(--color-black);
+            border-radius: var(--border-radius);
+            box-shadow: 5px 5px 0px var(--color-black);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.2s ease;
+        }
+
+        .event-card:hover {
+            transform: rotate(1deg) scale(1.02);
+            box-shadow: 7px 7px 0px var(--color-black);
+        }
+
+        .event-card-img {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            background-color: var(--bg-cream);
+            border-bottom: var(--border-width) solid var(--color-black);
+            overflow: hidden;
+        }
+
+        .event-card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .event-card-body {
+            padding: 20px;
+        }
+
+        .event-card-title {
+            font-size: 1.15rem;
+            margin-bottom: 6px;
+        }
+
+        .event-card-role {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--bg-purple);
+            margin-bottom: 8px;
+        }
+
+        .event-card-desc {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* FOOTER (Slide 13 Style) */
+        .footer-section {
+            background-color: var(--bg-purple);
+            border-top: var(--border-width) solid var(--color-black);
+            color: var(--bg-white);
+            padding: 100px 0 60px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .footer-section::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: radial-gradient(var(--color-black) 20%, transparent 20%);
+            background-size: 24px 24px;
+            opacity: 0.15;
+            pointer-events: none;
+        }
+
+        .footer-slide-box {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: var(--bg-purple);
+            border: var(--border-width) solid var(--color-black);
+            border-radius: var(--border-radius);
+            box-shadow: 10px 10px 0px var(--color-black);
+            padding: 80px 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-slide-box::after {
+            content: '';
+            position: absolute;
+            top: 15px; left: 15px; right: 15px; bottom: 15px;
+            border: 2px dashed var(--bg-cream);
+            border-radius: 8px;
             pointer-events: none;
             z-index: -1;
         }
 
-        .particle {
-            position: absolute;
-            width: 3px;
-            height: 3px;
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            animation: float 6s ease-in-out infinite;
+        .footer-title {
+            font-size: 5.5rem;
+            color: var(--accent-yellow);
+            text-shadow: 3px 3px 0px var(--color-black), 6px 6px 0px var(--accent-pink);
+            margin-bottom: 12px;
+            line-height: 1;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.3; }
-            50% { transform: translateY(-20px) rotate(180deg); opacity: 1; }
+        .footer-subtitle {
+            font-size: 1.8rem;
+            color: var(--bg-cream);
+            margin-bottom: 40px;
+            font-family: 'Fredoka', sans-serif;
         }
 
-        /* Header */
-        .header {
-            padding: 2rem 0;
-            text-align: center;
-            position: relative;
-        }
-
-        .hero-title {
-            font-size: 3.5rem;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
-            background-size: 300% 300%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: gradientShift 3s ease-in-out infinite;
-        }
-
-        @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
-        .hero-subtitle {
-            font-size: 1.2rem;
-            color: #b8b8ff;
-            margin-bottom: 2rem;
-        }
-
-        .contact-links {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .contact-link {
+        .email-copy-container {
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            text-decoration: none;
-            color: white;
-            border-radius: 25px;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-        }
-
-        .contact-link:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Main sections */
-        .section {
-            margin: 4rem 0;
-            padding: 2rem;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .section:hover {
-            background: rgba(255, 255, 255, 0.08);
-            transform: translateY(-5px);
-        }
-
-        .section-title {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            color: #4ecdc4;
-            text-align: center;
-        }
-
-        /* About section */
-        .about-content {
-            font-size: 1.1rem;
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
-            line-height: 1.8;
-        }
-
-        /* Featured Project */
-        .featured-project {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            align-items: center;
-            margin: 2rem 0;
-        }
-
-        .project-info h3 {
-            font-size: 1.8rem;
-            color: #ff6b6b;
-            margin-bottom: 1rem;
-        }
-
-        .project-description {
-            margin-bottom: 1.5rem;
-            line-height: 1.7;
-        }
-
-        .project-video {
+            gap: 12px;
+            background-color: var(--bg-white);
+            color: var(--color-black);
+            border: var(--border-width) solid var(--color-black);
+            border-radius: var(--border-radius-pill);
+            padding: 10px 24px;
+            margin-bottom: 40px;
+            box-shadow: 4px 4px 0px var(--color-black);
             position: relative;
-            width: 100%;
-            height: 300px;
-            border-radius: 15px;
-            overflow: hidden;
-            background: #000;
         }
 
-        .project-video iframe {
-            width: 100%;
-            height: 100%;
+        .email-text {
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 600;
+            font-size: 1.3rem;
+        }
+
+        .btn-copy {
+            background: none;
             border: none;
+            cursor: pointer;
+            font-size: 1.3rem;
+            transition: transform 0.15s ease;
         }
 
-        .awards {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            margin: 1rem 0;
+        .btn-copy:hover {
+            transform: scale(1.15);
         }
 
-        .award {
-            background: linear-gradient(45deg, #ff6b6b, #ffa500);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: bold;
-        }
-
-        .project-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .project-link {
-            padding: 0.8rem 1.5rem;
-            background: linear-gradient(45deg, #4ecdc4, #45b7d1);
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-        }
-
-        .project-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(78, 205, 196, 0.4);
-        }
-
-        /* Skills and Experience */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-
-        .skill-card {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 1.5rem;
-            border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .skill-card:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: scale(1.02);
-        }
-
-        .skill-card h4 {
-            color: #4ecdc4;
-            margin-bottom: 1rem;
-            font-size: 1.2rem;
-        }
-
-        .project-card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-            overflow: hidden;
-        }
-
-        .project-card:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .project-image {
-            width: 250px;
-            height: 250px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            margin: 0 auto;
-            position: relative;
-            overflow: hidden;
-            background-size: cover;
-            background-position: center;
-            border-radius: 15px;
-        }
-
-        .project-image::before {
-            content: '';
+        .copy-tooltip {
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.3);
-            z-index: 1;
-        }
-
-        .project-image-icon {
-            position: relative;
-            z-index: 2;
-            font-size: 3rem;
-        }
-
-        .project-content {
-            padding: 1.5rem;
-        }
-
-        .project-content h4 {
-            color: #4ecdc4;
-            margin-bottom: 1rem;
-            font-size: 1.2rem;
-        }
-
-        /* Timeline */
-        .timeline {
-            position: relative;
-            padding: 2rem 0;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
+            bottom: -35px;
             left: 50%;
-            transform: translateX(-50%);
-            width: 2px;
-            height: 100%;
-            background: linear-gradient(to bottom, #4ecdc4, #45b7d1);
-        }
-
-        .timeline-item {
-            position: relative;
-            margin: 2rem 0;
-            padding: 0 2rem;
-        }
-
-        .timeline-item:nth-child(odd) {
-            text-align: right;
-            margin-right: 50%;
-        }
-
-        .timeline-item:nth-child(even) {
-            text-align: left;
-            margin-left: 50%;
-        }
-
-        .timeline-content {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 1.5rem;
-            border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .timeline-date {
-            color: #ff6b6b;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero-title {
-                font-size: 2.5rem;
-            }
-
-            .featured-project {
-                grid-template-columns: 1fr;
-            }
-
-            .timeline::before {
-                left: 20px;
-            }
-
-            .timeline-item {
-                margin-left: 40px !important;
-                margin-right: 0 !important;
-                text-align: left !important;
-            }
-
-            .contact-links {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
-
-        /* Scroll animations */
-        .fade-in {
+            transform: translateX(-50%) translateY(5px);
+            background-color: var(--color-black);
+            color: var(--bg-cream);
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-family: 'Fredoka', sans-serif;
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
+            transition: all 0.2s ease;
+            pointer-events: none;
         }
 
-        .fade-in.visible {
+        .copy-tooltip.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .footer-socials {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .footer-copyright {
+            margin-top: 60px;
+            font-size: 0.9rem;
+            opacity: 0.6;
+        }
+
+        /* ANIMATIONS KEYFRAMES */
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* SCROLL REVEAL CLASS */
+        .reveal-node {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.6s cubic-bezier(0.165, 0.84, 0.44, 1), transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .reveal-node.visible {
             opacity: 1;
             transform: translateY(0);
+        }
+
+        /* RESPONSIVE BREAKPOINTS */
+        @media (max-width: 992px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+            }
+            .slide-panel, .slide-panel.reverse {
+                grid-template-columns: 1fr;
+            }
+            .slide-media-block {
+                border-left: none;
+                border-top: var(--border-width) solid var(--color-black);
+            }
+            .slide-panel.reverse .slide-media-block {
+                border-right: none;
+                border-top: var(--border-width) solid var(--color-black);
+                order: initial;
+            }
+            .timeline-container::before {
+                left: 20px;
+            }
+            .timeline-node {
+                justify-content: flex-start;
+                padding-left: 50px;
+                padding-right: 0;
+            }
+            .timeline-node.left-side {
+                padding-left: 50px;
+            }
+            .timeline-marker {
+                left: 20px;
+            }
+            .timeline-content-card {
+                margin-left: 0 !important;
+                margin-right: 0 !important;
+                max-width: 100%;
+            }
+            .footer-title {
+                font-size: 4rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none; /* Hide header links on tiny screens, scroll is smooth */
+            }
+            .section-title {
+                font-size: 2.2rem;
+            }
+            .hero-name-label {
+                font-size: 2.8rem;
+            }
+            .footer-title {
+                font-size: 3rem;
+            }
+            .email-text {
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="particles" id="particles"></div>
 
-    <div class="container">
-        <!-- Header -->
-        <header class="header fade-in">
-            <h1 class="hero-title">Mert Erdogan</h1>
-            <p class="hero-subtitle">Passionate Indie Game Maker from Istanbul</p>
-            
-            <div class="contact-links">
-                <a href="mailto:mert.erdogan789@gmail.com" class="contact-link">
-                    📧 Email
-                </a>
-                <a href="https://drive.google.com/file/d/1P3ozgjUNH1UdBIufK8zhOqO-FVgCVpxa/view?usp=sharing" class="contact-link" target="_blank">
-                    📄 CV
-                </a>
-                <a href="https://www.linkedin.com/in/hilamghost/" class="contact-link" target="_blank">
-                    💼 LinkedIn
-                </a>
-                <a href="https://github.com/HilamGhost" class="contact-link" target="_blank">
-                    🔗 GitHub
-                </a>
-                <a href="https://hilamghost.itch.io/" class="contact-link" target="_blank">
-                    🎮 Itch.io
-                </a>
-            </div>
-        </header>
+    <!-- FLOATING NAV HEADER -->
+    <header class="nav-header">
+        <a href="#" class="nav-logo">
+            Mert Erdogan <span>Game Dev</span>
+        </a>
+        <nav class="nav-links">
+            <a href="#featured" class="nav-link">Featured</a>
+            <a href="#jams" class="nav-link">Jams</a>
+            <a href="#prototypes" class="nav-link">Prototypes</a>
+            <a href="#tools" class="nav-link">Tools</a>
+            <a href="#about" class="nav-link">About & Timeline</a>
+        </nav>
+    </header>
 
-        <!-- About Section -->
-        <section class="section fade-in">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-content">
-                <p>I'm a passionate game designer & programmer  from Istanbul with a strong focus on <strong>game feel</strong>, <strong>system design</strong>, and <strong>technical polish</strong>. I specialize in creating immersive, responsive gameplay experiences using Unity and C#.</p>
-                <br>
-                <p>I have a deep understanding of player feedback, usability, and iteration. I enjoy developing tightly designed mechanics and systems that make games feel intuitive and rewarding. My experience spans both solo and collaborative projects, and I'm especially drawn to roles involving prototyping, iteration, and gameplay polish to a high standard.</p>
-            </div>
-        </section>
+    <!-- HERO SECTION (Page 1 Style) -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="hero-grid">
+                
+                <!-- Left: Profile & Links -->
+                <div class="hero-left-card reveal-node">
+                    <div class="profile-frame">
+                        <img src="images/avatar.png" alt="Mert Erdogan Avatar">
+                    </div>
+                    
+                    <h3 class="font-heading" style="font-size: 1.5rem; margin-bottom: 20px;">Mert Erdogan</h3>
+                    
+                    <div class="hero-links-list">
+                        <a href="https://www.linkedin.com/in/hilamghost/" target="_blank" class="hero-link-item">
+                            💼 LinkedIn
+                        </a>
+                        <a href="https://github.com/HilamGhost" target="_blank" class="hero-link-item">
+                            🔗 GitHub
+                        </a>
+                        <a href="https://hilamghost.itch.io/" target="_blank" class="hero-link-item">
+                            🎮 Itch.io
+                        </a>
+                        <a href="https://drive.google.com/file/d/11-MDQokAyW9ixBr3OzI6h9H22ubblWiY/view?usp=sharing" target="_blank" class="hero-link-item">
+                            📄 Download CV
+                        </a>
+                    </div>
+                </div>
 
-        <!-- Featured Project -->
-        <section class="section fade-in">
-            <h2 class="section-title">Featured Project</h2>
-            <div class="featured-project">
-                <div class="project-info">
-                    <h3>Unfortunate Tales of Violet</h3>
-                    <p class="project-description">
-                        An action-adventure game where players draw runes in real-time to cast spells in a world full of dark humor and absurdity. Developed over two years as a two-person team, reaching the vertical slice stage with a focus on creating a uniquely chaotic spellcasting experience that blends fast-paced combat with cartoon animation.
+                <!-- Right: Content Slide Frame -->
+                <div class="hero-right-panel reveal-node">
+                    <h1 class="hero-name-label">Mert Erdogan</h1>
+                    <p class="hero-tagline">Passionate Indie Game Developer from Istanbul</p>
+                    <p class="hero-desc">
+                        I am a game designer and gameplay programmer specializing in <strong>game feel</strong>, <strong>system design</strong>, and <strong>technical polish</strong>. I build highly responsive and immersive gameplay experiences using Unity & C#.
+                    </p>
+                    <p class="hero-desc">
+                        Co-Founder of BUG Zone, Bahcesehir University Digital Game Design Student Club, coordinating industry conferences, game jams, and workshops.
                     </p>
                     
-                    <div class="awards">
-                        <span class="award">🥇 1st Place - BUG Lab TEKMER</span>
-                        <span class="award">🥉 3rd Place - Gaming Istanbul 2024</span>
-                        <span class="award">🥉 Nominee - Student Game Festival 2025</span>
-                    </div>
-                    
-                    <div class="project-links">
-                        <a href="https://store.steampowered.com/app/2385490/Unfortunate_Tales_of_Violet/" class="project-link" target="_blank">
-                            Steam Page
-                        </a>
-                        <a href="https://www.youtube.com/watch?v=wjmfAB-aNzU" class="project-link" target="_blank">
-                            Watch Trailer
-                        </a>
+                    <div class="hero-badges-container">
+                        <span class="badge-retro badge-yellow">Unity 6 & C#</span>
+                        <span class="badge-retro badge-pink">Gameplay Polish</span>
+                        <span class="badge-retro badge-cream">Systems & Prototyping</span>
+                        <span class="badge-retro badge-purple">Unreal Engine</span>
                     </div>
                 </div>
-                
-                <div class="project-video">
-                    <iframe src="https://www.youtube.com/embed/wjmfAB-aNzU" allowfullscreen></iframe>
-                </div>
+
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Skills & Experience -->
-        <section class="section fade-in">
-            <h2 class="section-title">Skills & Expertise</h2>
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <h4>🎮 Game Development</h4>
-                    <p>Unity, C#, Gameplay Programming, System Design, Game Feel, UI/UX Implementation</p>
-                </div>
-                
-                <div class="skill-card">
-                    <h4>🔧 Technical Skills</h4>
-                    <p>Prototyping, Iteration, Code Architecture, Performance Optimization, Version Control</p>
-                </div>
-                
-                <div class="skill-card">
-                    <h4>🎨 Design Philosophy</h4>
-                    <p>Player Feedback, Usability Testing, Intuitive Controls, Responsive Gameplay, Technical Polish</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Experience & Education -->
-        <section class="section fade-in">
-            <h2 class="section-title">Experience & Education</h2>
-            <div class="skills-grid">
-                <div class="project-card">
-                    <div class="project-image" style="background-image: url('images/BugLab.png');">
-                    </div>
-                    <div class="project-content">
-                        <h4>Digital Game Design</h4>
-                        <p><strong>Bahçeşehir University (2022-2026)</strong><br>
-                        Full Scholarship recipient focusing on game development, programming, and interactive media design. Currently pursuing advanced coursework in gameplay systems and technical implementation.</p>
-                    </div>
-                </div>
-                
-                <div class="project-card">
-                     <div class="project-image" style="background-image: url('images/GoodHeavens.png');">
-                    </div>
-                    <div class="project-content">
-                        <h4>Game Programming Intern</h4>
-                        <p><strong>Nowhere Studios, Istanbul (Dec 2023 - Jun 2024)</strong><br>
-                        Contributed to "Good Heavens!" project as part of the main development team. Specialized in UI system reworking and game feel improvements, gaining hands-on experience in professional game development.</p>
-                    </div>
-                </div>
-                
-                <div class="project-card">
-                     <div class="project-image" style="background-image: url('images/bugZone.jpg');">
-                    </div>
-                    <div class="project-content">
-                        <h4>Community Leadership</h4>
-                        <p><strong>Bug Zone - Founder & Event Coordinator (Dec 2022 - Apr 2024)</strong><br>
-                        Founded and led a student organization within BUG Lab, organizing industry conferences, game jams, and educational workshops. Coordinated events with 10+ indie game teams and industry professionals.</p>
-                    </div>
-                </div>
-                
-                <div class="project-card">
-                    <div class="project-image" style="background-image: url('images/ggjWorkshop.jpg');">
-                    </div>
-                    <div class="project-content">
-                        <h4>Unity Workshop</h4>
-                        <p><strong>Global Game Jam 2025 @ BUG</strong><br>
-                        Delivered Unity development workshops covering game feel, clean code architecture, and rapid prototyping techniques for indie developers.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-<!-- Experience & Education -->
-        <section class="section fade-in">
-            <h2 class="section-title">Events</h2>
-            <div class="skills-grid">
-                
-                <div class="project-card">
-                    <div class="project-image" style="background-image: url('images/BugLab.png');">
-                    </div>
-                    <div class="project-content">
-                        <h4>BUG Lab TEKMER- Pre Incubation #2</h4>
-                        <p><strong>Pre-Incubator as Crab 9</strong><br>
-                        As Crab 9, we graduated from BUG Lab TEKMER- Pre Incubation #2 as the Best Team. </p>
-                    </div>
-                </div> 
-
-                <div class="project-card">
-                    <div class="project-image" style="background-image: url('images/ggj23.png');">
-                    </div>
-                    <div class="project-content">
-                        <h4>Global Game Jam 2023 @ Istanbul</h4>
-                        <p><strong>Staff</strong><br>
-                        I was responsible for making jammer's more comfortable and fix their problems</p>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-image" style="background-image: url('images/halloween.png');">
-                    </div>
-                    <div class="project-content">
-                        <h4>Halloween Jam 2023 @ BUG</h4>
-                        <p><strong>Event Coordinator</strong><br>
-                            We coordinated a Jam/Party for all club members with BUG Zone. I took a part of the physical part of the jam.</p>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-image" style="background-image: url('images/ggj24.png');">
-                    </div>
-                    <div class="project-content">
-                        <h4>Global Game Jam 2024 @ Istanbul</h4>
-                        <p><strong>Event Coordinator</strong><br>
-                        As BUG Zone, We coordinated GGJ 2024 @ Istanbul with UNOG. I took a part of the physical part of the jam. </p>
-                    </div>
-                </div>
+    <!-- FEATURED PROJECTS SECTION (Pages 2, 4, 9, 10 Style) -->
+    <section class="section-padding" id="featured">
+        <div class="container">
             
-                 <div class="project-card">
-                    <div class="project-image" style="background-image: url('images/zoneTalks.png');">
-                    </div>
-                    <div class="project-content">
-                        <h4>Zone Talks #1</h4>
-                        <p><strong>Event & Indie Game Coordinator</strong><br>
-                        As BUG Zone, We coordinated one of the biggest indie game development convesation. I was responsible for indie stands and the general physical organization. </p>
-                    </div>
-                </div> 
-
-                <div class="project-card">
-                    <div class="project-image" style="background-image: url('images/LoC.png');">
-                    </div>
-                    <div class="project-content">
-                        <h4>Land Of The Crescent: Games From Turkiye 2024 </h4>
-                        <p><strong>Speaker: Young Blood From Turkiye</strong><br>
-                        As Developers of Unfortunate Tales Of Violet, we talked about our experiences and stories while developing Unfortunate Tales Of Violet. </p>
-                    </div>
-                </div> 
-
-                <div class="project-card">
-                    <div class="project-image" style="background-image: url('images/sgf.png');">
-                    </div>
-                    <div class="project-content">
-                        <h4>Student Game Festival 2025</h4>
-                        <p><strong>Nominee</strong><br>
-                        As Developers of Unfortunate Tales Of Violet, we selected as a nominee for Student Game Festival. </p>
-                    </div>
-                </div> 
-
+            <div class="section-header reveal-node">
+                <h2 class="section-title">Featured Projects</h2>
+                <p style="font-size: 1.1rem; opacity: 0.7;">Major projects, commercial works, and award-winning vertical slices</p>
             </div>
-        </section>
 
- 
-        <!-- Game Jam Projects -->
-        <section class="section fade-in">
-            <h2 class="section-title">Highlighted Projects</h2>
-            <div class="skills-grid">
-                <div class="project-card">
-                    <div class="project-image" style="background-image: url('images/fruitJammin.png');">
+            <!-- Slide 2: Unfortunate Tales of Violet -->
+            <div class="slide-panel reveal-node">
+                <div class="slide-content-block purple">
+                    <span class="slide-tag">Passion Project</span>
+                    <h3 class="slide-title">Unfortunate Tales of Violet</h3>
+                    <p class="slide-desc">
+                        An action-adventure game where players draw runes in real-time to cast spells in a world full of dark humor and absurdity. Developed over two years, focusing on creating a uniquely chaotic spellcasting experience blending combat and animation.
+                    </p>
+                    
+                    <ul class="slide-bullet-list">
+                        <li>Designed simple, flexible rune drawing shapes for fast action</li>
+                        <li>Built doubling spell combination system that rewards mastery</li>
+                        <li>Coded in Unity 6 utilizing FMOD sound engine</li>
+                    </ul>
+
+                    <div style="margin-bottom: 20px;">
+                        <span class="badge-retro badge-yellow">🏆 First Place - BUG Lab TEKMER</span>
+                        <span class="badge-retro badge-pink">🥉 Third Best Game - Gaming Istanbul</span>
+                        <span class="badge-retro badge-cream">🏅 Nominee - Student Game Festival</span>
                     </div>
-                    <div class="project-content">
-                        <h4>Fruit Jammin'</h4>
-                        <p>A cozy puzzle-platformer about a young bassist bat who can turn sounds into lights. <strong>5th Best Game & Best Sound Design</strong> at Magara Jam #4 out of 500+ games.</p>
-                        <div style="margin-top: 1rem;">
-                            <a href="https://mercanarapoglu.itch.io/fruit-jammin" class="project-link" target="_blank" style="display: inline-block; padding: 0.5rem 1rem; font-size: 0.9rem;">
-                                Play on Itch.io
-                            </a>
-                        </div>
-                    </div>
+
+                    <p style="font-weight: 600; color: var(--accent-yellow); margin-bottom: 15px;">Role: Game Designer & Programmer</p>
                 </div>
                 
-                <div class="project-card">
-                    <div class="project-image" style="background-image: url('images/teleTangle.png');"></div>
-                    <div class="project-content">
-                        <h4>Tele-Tangle</h4>
-                        <p>A puzzle-platformer about little characters inside a TV who realize they're on television and try to escape using different TV channels. <strong>Finalist</strong> at Magara Jam 2023 (Top 15/500+).</p>
-                        <div style="margin-top: 1rem;">
-                            <a href="https://www.youtube.com/watch?v=tudnEqQtf-I" class="project-link" target="_blank" style="display: inline-block; padding: 0.5rem 1rem; font-size: 0.9rem;">
-                                View Project
-                            </a>
-                        </div>
+                <div class="slide-media-block">
+                    <div class="media-label">Trailer & Steam</div>
+                    <div class="media-container-retro">
+                        <iframe src="https://www.youtube.com/embed/wjmfAB-aNzU" allowfullscreen></iframe>
                     </div>
-                </div>
-                
-                <div class="project-card">
-                      <div class="project-image" style="background-image: url('images/jungleRescue.png');"></div>
-                    <div class="project-content">
-                        <h4>Jungle Rescue</h4>
-                        <p>An adventure game showcasing environmental storytelling and player progression mechanics developed during game jam conditions.</p>
-                        <div style="margin-top: 1rem;">
-                            <a href="https://mercanarapoglu.itch.io/jungle-rescue" class="project-link" target="_blank" style="display: inline-block; padding: 0.5rem 1rem; font-size: 0.9rem;">
-                                Play on Itch.io
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="project-card">
-                    <div class="project-image" style="background-image: url('images/paratrain.png');"></div>
-                    <div class="project-content">
-                        <h4>Paratrain</h4>
-                        <p>A unique gameplay concept combining transportation mechanics with strategic elements, demonstrating creative problem-solving in game design.</p>
-                        <div style="margin-top: 1rem;">
-                            <a href="https://yusplay.itch.io/paratrain" class="project-link" target="_blank" style="display: inline-block; padding: 0.5rem 1rem; font-size: 0.9rem;">
-                                Play on Itch.io
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image" style="background-image: url('images/clubSandwitch.gif');"></div>
-                    <div class="project-content">
-                        <h4>Club Sandwitch</h4>
-                        <p>Club Sandwich is a silly co-op game where two slices of bread, tied together, try to make sandwiches while surviving a chaotic kitchen.</p>
-                        <div style="margin-top: 1rem;">
-                            <a href="https://www.youtube.com/watch?v=-5ZtwQybSho" class="project-link" target="_blank" style="display: inline-block; padding: 0.5rem 1rem; font-size: 0.9rem;">
-                                 View Project
-                            </a>
-                        </div>
+                    <div class="slide-links">
+                        <a href="https://store.steampowered.com/app/2385490/Unfortunate_Tales_of_Violet/" target="_blank" class="btn-retro btn-purple" style="flex: 1;">
+                            🎮 Steam Page
+                        </a>
+                        <a href="https://www.youtube.com/watch?v=wjmfAB-aNzU" target="_blank" class="btn-retro" style="flex: 1;">
+                            📺 YouTube Link
+                        </a>
                     </div>
                 </div>
             </div>
-        </section>
 
-        <!-- Prototypes & Experiments -->
-        <section class="section fade-in">
-            <h2 class="section-title">Prototypes & Experiments</h2>
-            <div class="skills-grid">
+            <!-- Slide 4: Good Heavens! -->
+            <div class="slide-panel reverse reveal-node">
+                <div class="slide-content-block purple" style="background-color: var(--bg-purple);">
+                    <span class="slide-tag">Professional Experience</span>
+                    <h3 class="slide-title">Good Heavens!</h3>
+                    <p class="slide-desc">
+                        A multiplayer open-world crafting and building RPG at Nowhere Studios. Navigate quirky promised lands as sword, wand, or builder. Restructured key codebase systems to polish game feel.
+                    </p>
+                    
+                    <ul class="slide-bullet-list">
+                        <li>Refactored UI system to improve rendering performance and modularity</li>
+                        <li>Enhanced gameplay feedback loops: camera shake, hit stops, and VFX</li>
+                        <li>Worked with Unity 6, Mirror multiplayer, and FMOD</li>
+                    </ul>
 
-                <div class="project-card">
-                    <div class="project-image" style="background-image: url('images/vrHorror.gif');"></div>
-                    <div class="project-content">
-                        <h4>"Metro Carrier" VR Horror Game"</h4>
-                        <p>"Metro Carrier" is a VR Survival Horror Rail Shooter that player can fully interact with the wagon and tools.</p>
-                        <div style="margin-top: 1rem;">
-                            <a href="https://hilamghost.itch.io/vr-metro-the-carrier" class="project-link" target="_blank" style="display: inline-block; padding: 0.5rem 1rem; font-size: 0.9rem;">
-                                View Project
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                 <div class="project-card">
-                    <div class="project-image" style="background-image: url('images/metamorfish.png');"></div>
-                    <div class="project-content">
-                        <h4>Metamorfish</h4>
-                        <p>A narrative lovecraftian underwater horror game.</p>
-                        <div style="margin-top: 1rem;">
-                            <a href="https://onursimsek.itch.io/metamorfish" class="project-link" target="_blank" style="display: inline-block; padding: 0.5rem 1rem; font-size: 0.9rem;">
-                                Play on Itch.io
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-
-                 <div class="project-card">
-                    <div class="project-image" style="background-image: url('images/ParraP.png');"></div>
-                    <div class="project-content">
-                        <h4>ParraP</h4>
-                        <p>ParraP is a puzzle-platformer game that blends with parralel universes. Our character Caroline tries to connects two parralel universes to one.</p>
-                        <div style="margin-top: 1rem;">
-                            <a href="https://hilamghost.itch.io/parrap" class="project-link" target="_blank" style="display: inline-block; padding: 0.5rem 1rem; font-size: 0.9rem;">
-                                Play on Itch.io
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-image" style="background-image: url('images/bineralError.png');"></div>
-                    <div class="project-content">
-                        <h4>Bineral Error</h4>
-                        <p>An experimental puzzle game exploring binary logic and error correction mechanisms, showcasing innovative gameplay mechanics and educational elements.</p>
-                        <div style="margin-top: 1rem;">
-                            <a href="https://hilamghost.itch.io/bineral-error" class="project-link" target="_blank" style="display: inline-block; padding: 0.5rem 1rem; font-size: 0.9rem;">
-                                Play on Itch.io
-                            </a>
-                        </div>
-                    </div>
+                    <p style="font-weight: 600; color: var(--accent-yellow); margin-bottom: 15px;">Role: Game Programmer Intern (Nowhere Studios)</p>
                 </div>
                 
-                <div class="project-card">
-                    <div class="project-image" style="background-image: url('images/cameraShakePrototype.png');"></div>
-                    <div class="project-content">
-                        <h4>Camera Shake Prototype</h4>
-                        <p>A technical demonstration showcasing various camera shake implementations and game feel techniques, demonstrating expertise in juice and feedback systems.</p>
-                        <div style="margin-top: 1rem;">
-                            <a href="https://hilamghost.itch.io/camera-shake-prototype" class="project-link" target="_blank" style="display: inline-block; padding: 0.5rem 1rem; font-size: 0.9rem;">
-                                Try Prototype
-                            </a>
-                        </div>
+                <div class="slide-media-block">
+                    <div class="media-label">Steam Release</div>
+                    <div class="media-container-retro">
+                        <img src="images/GoodHeavens.png" alt="Good Heavens Game Screenshot">
                     </div>
-                </div>
-                
-                
-
-                <div class="project-card">
-                    <div class="project-image" style="background-image: url('images/duneDash.png');"></div>
-                    <div class="project-content">
-                        <h4>Dune Dash</h4>
-                        <p>Dune Dash is an algorithm teaching game for kids.</p>
-                        <div style="margin-top: 1rem;">
-                            <a href="https://hilamghost.itch.io/dunedash" class="project-link" target="_blank" style="display: inline-block; padding: 0.5rem 1rem; font-size: 0.9rem;">
-                                Play on Itch.io
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="project-card">
-                    <div class="project-image" style="background-image: url('images/survivalHorrorMap.png');"></div>
-                    <div class="project-content">
-                        <h4>Survival Horror Map Prototype</h4>
-                        <p>An atmospheric prototype about the map system in Survival Horror Games</p>
-                        <div style="margin-top: 1rem;">
-                            <a href="https://hilamghost.itch.io/survival-horror-map-prototype" class="project-link" target="_blank" style="display: inline-block; padding: 0.5rem 1rem; font-size: 0.9rem;">
-                                Experience Demo
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="project-card">
-                    <div class="project-image" style="background-image: url('images/projectSpace.png');"></div>
-                    <div class="project-content">
-                        <h4>Project Space Appointment Board Game</h4>
-                        <p>Welcome to  Project : Space Appointment! Objective of the game is to get command over the ship by collecting 3 mission cards before your opponents. </p>
-                        <div style="margin-top: 1rem;">
-                            <a href="https://hilamghost.itch.io/project-space-appointment-board-game" class="project-link" target="_blank" style="display: inline-block; padding: 0.5rem 1rem; font-size: 0.9rem;">
-                                View Project
-                            </a>
-                        </div>
+                    <div class="slide-links">
+                        <a href="https://store.steampowered.com/app/2056340/Good_Heavens/" target="_blank" class="btn-retro btn-purple" style="flex: 1;">
+                            🎮 Steam Page
+                        </a>
                     </div>
                 </div>
             </div>
-        </section>
 
-        <!-- Open Source Tools & Libraries -->
-        <section class="section fade-in">
-            <h2 class="section-title">Open Source Tools & Libraries</h2>
-            <div class="skills-grid">
-                <div class="project-card">
-                    <div class="project-image" style="background-image: url('images/gameFeel.png');"></div>
-                    <div class="project-content">
-                        <h4>Game Feel Practices</h4>
-                        <p>A comprehensive collection of Unity scripts and techniques for improving game feel, including juice effects, feedback systems, and polish implementations.</p>
-                        <div style="margin-top: 1rem;">
-                            <a href="https://github.com/HilamGhost/Game-Feel-Practices" class="project-link" target="_blank" style="display: inline-block; padding: 0.5rem 1rem; font-size: 0.9rem;">
-                                View on GitHub
-                            </a>
-                        </div>
-                    </div>
+            <!-- Slide 9: Metamorfish -->
+            <div class="slide-panel reveal-node">
+                <div class="slide-content-block green">
+                    <span class="slide-tag">1st Graduation Project</span>
+                    <h3 class="slide-title">Metamorfish</h3>
+                    <p class="slide-desc">
+                        A narrative Lovecraftian horror and economic survival game. Controls a deep-lake diver struggling to fish under crushing economic pressure, slowly uncovering a cosmic horror organism.
+                    </p>
+                    
+                    <ul class="slide-bullet-list">
+                        <li>Created claustrophobic environment with dynamic water & light physics</li>
+                        <li>Implemented fishing system where lake "Blood Level" rises with catches</li>
+                        <li>Developed in Unity with focus on tense, feedback-heavy gameplay loop</li>
+                    </ul>
+
+                    <p style="font-weight: 600; color: var(--accent-yellow); margin-bottom: 15px;">Role: Game Designer & Programmer</p>
                 </div>
                 
-                <div class="project-card">
-                    <div class="project-image" style="background-image: url('images/spriteColor.png');"></div>
-                    <div class="project-content">
-                        <h4>Sprite Color Analyser</h4>
-                        <p>A Unity tool for analyzing sprite colors and generating color palettes, useful for art pipeline optimization and color consistency in game development.</p>
-                        <div style="margin-top: 1rem;">
-                            <a href="https://github.com/HilamGhost/Sprite-Color-Analyser" class="project-link" target="_blank" style="display: inline-block; padding: 0.5rem 1rem; font-size: 0.9rem;">
-                                View on GitHub
-                            </a>
-                        </div>
+                <div class="slide-media-block">
+                    <div class="media-label">Play Metamorfish</div>
+                    <div class="media-container-retro">
+                        <img src="images/metamorfish.png" alt="Metamorfish Game Screenshot">
                     </div>
-                </div>
-                
-                <div class="project-card">
-                    <div class="project-image" style="background-image: url('images/richText.png');"></div>
-                    <div class="project-content">
-                        <h4>String Extensions for Unity Rich Text</h4>
-                        <p>A utility library that simplifies Unity's rich text implementation with easy-to-use string extensions for better UI text formatting.</p>
-                        <div style="margin-top: 1rem;">
-                            <a href="https://github.com/HilamGhost/String-Extensions-For-Unity-Rich-Texts" class="project-link" target="_blank" style="display: inline-block; padding: 0.5rem 1rem; font-size: 0.9rem;">
-                                View on GitHub
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="project-card"> 
-                    <div class="project-image" style="background-image: url('images/overlapCone.gif');"></div>
-                    <div class="project-content">
-                        <h4>2D Overlap Cone Extension</h4>
-                        <p>A Unity extension that adds cone-shaped overlap detection for 2D games, perfect for implementing vision systems, detection zones, and directional gameplay mechanics.</p>
-                        <div style="margin-top: 1rem;">
-                            <a href="https://github.com/HilamGhost/2D-Overlap-Cone-Extension-For-Unity" class="project-link" target="_blank" style="display: inline-block; padding: 0.5rem 1rem; font-size: 0.9rem;">
-                                View on GitHub
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card"> 
-                    <div class="project-image" style="background-image: url('images/parabolicRaycast.png');"></div>
-                    <div class="project-content">
-                        <h4>Parabolic Raycast Extension</h4>
-                        <p>A Unity extension that adds parabolic raycast for 3D games, perfect for implementing realistic bullet systems, throwing detection mechanics.</p>
-                        <div style="margin-top: 1rem;">
-                            <a href="https://github.com/HilamGhost/ParabolicRaycast" class="project-link" target="_blank" style="display: inline-block; padding: 0.5rem 1rem; font-size: 0.9rem;">
-                                View on GitHub
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card"> 
-                    <div class="project-image" style="background-image: url('images/objectPooling.png');"></div>
-                    <div class="project-content">
-                        <h4>The Most Simple Object Pooling</h4>
-                        <p>Welcome to the most basic but beautiful Object Pool™ in Unity.</p>
-                        <div style="margin-top: 1rem;">
-                            <a href="https://github.com/HilamGhost/Object-Pooling" class="project-link" target="_blank" style="display: inline-block; padding: 0.5rem 1rem; font-size: 0.9rem;">
-                                View on GitHub
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card"> 
-                    <div class="project-image" style="background-image: url('images/stateMachine.png');"></div>
-                    <div class="project-content">
-                        <h4>State Manager</h4>
-                        <p>Because if (isJumping) and else if (isWalking) spaghetti deserves to stay in the kitchen 🍝</p>
-                        <div style="margin-top: 1rem;">
-                            <a href="https://github.com/HilamGhost/Generic-State-Manager" class="project-link" target="_blank" style="display: inline-block; padding: 0.5rem 1rem; font-size: 0.9rem;">
-                                View on GitHub
-                            </a>
-                        </div>
+                    <div class="slide-links">
+                        <a href="https://onursimsek.itch.io/metamorfish" target="_blank" class="btn-retro btn-purple" style="flex: 1;">
+                            🎮 Play on Itch.io
+                        </a>
                     </div>
                 </div>
             </div>
-        </section>
 
-        <!-- Awards & Recognition -->
-        <section class="section fade-in">
-            <h2 class="section-title">Awards & Recognition</h2>
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <h4>🏆 BUG Lab TEKMER Pre Incubation #2</h4>
-                    <p><strong>First Place</strong> - Unfortunate Tales of Violet graduated as the first best project</p>
+            <!-- Slide 10: Who Sank The Titanic? -->
+            <div class="slide-panel reverse reveal-node">
+                <div class="slide-content-block purple">
+                    <span class="slide-tag">2nd Graduation Project</span>
+                    <h3 class="slide-title">Who Sank The Titanic?</h3>
+                    <p class="slide-desc">
+                        Multiplayer social deduction game set in 1912. Time travelers try to save the Titanic from disaster while hidden saboteurs work secretly to ensure history remains unchanged.
+                    </p>
+                    
+                    <ul class="slide-bullet-list">
+                        <li>Implemented robust network states and synchronized player tasks</li>
+                        <li>Coded sabotages, deduction systems, and voting loops</li>
+                        <li>Uses Unity 6, Mirror networking, and FMOD engine</li>
+                    </ul>
+
+                    <p style="font-weight: 600; color: var(--accent-yellow); margin-bottom: 15px;">Role: Game Designer & Programmer</p>
                 </div>
                 
-                <div class="skill-card">
-                    <h4>🎖️ Gaming Istanbul 2024</h4>
-                    <p><strong>Third Best Game</strong> - Recognition at Turkey's biggest gaming convention</p>
-                </div>
-                
-                <div class="skill-card">
-                    <h4>🎵 Magara Jam #4</h4>
-                    <p><strong>5th Best Game & Best Sound Design</strong> - Fruit Jammin' out of 500+ submissions</p>
-                </div>
-                
-                <div class="skill-card">
-                    <h4>📺 Magara Jam 2023</h4>
-                    <p><strong>Finalist</strong> - Tele-Tangle selected as top 15 out of 500+ games</p>
+                <div class="slide-media-block">
+                    <div class="media-label">inspirations & structure</div>
+                    <div class="media-container-retro">
+                        <!-- We can show project picture from portfolio if available -->
+                        <img src="images/wstt.png" alt="Who Sank The Titanic Board/Scene Design">
+                    </div>
+                    <div class="slide-links">
+                        <span class="btn-retro btn-purple" style="flex: 1; cursor: default;">
+                            🎲 School Graduation Vertical Slice
+                        </span>
+                    </div>
                 </div>
             </div>
-        </section>
-    </div>
 
+        </div>
+    </section>
+
+    <!-- GAME JAMS SECTION (Slides 5-8 Style) -->
+    <section class="section-padding" style="background-color: var(--bg-white); border-top: var(--border-width) solid var(--color-black); border-bottom: var(--border-width) solid var(--color-black);" id="jams">
+        <div class="container">
+            
+            <div class="section-header reveal-node">
+                <h2 class="section-title">Highlighted Jams</h2>
+                <p style="font-size: 1.1rem; opacity: 0.7;">Polished prototypes developed in 72 hours under jam constraints</p>
+            </div>
+
+            <div class="cards-grid">
+                
+                <!-- Card 1: Club Sandwich -->
+                <div class="project-retro-card jam-card-0 reveal-node">
+                    <div class="card-img-container">
+                        <img src="images/clubSandwitch.gif" alt="Club Sandwich Gameplay GIF">
+                        <div class="media-label" style="top: 10px; left: 10px;">Magara Jam 2025</div>
+                    </div>
+                    <div class="card-body-content">
+                        <div>
+                            <div class="card-badge-line">
+                                <span class="badge-retro badge-pink">Top 15 / 500+ Games</span>
+                                <span class="badge-retro badge-cream">Co-op</span>
+                            </div>
+                            <h4 class="card-title">Club Sandwich</h4>
+                            <p class="card-desc">A silly co-op game where two slices of bread, tied together, try to assemble sandwiches while surviving a chaotic kitchen.</p>
+                        </div>
+                        <div class="card-footer-action">
+                            <a href="https://www.youtube.com/watch?v=-5ZtwQybSho" target="_blank" class="btn-retro btn-purple" style="width: 100%;">
+                                📺 Watch Video
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2: Tele-Tangle -->
+                <div class="project-retro-card jam-card-0 reveal-node">
+                    <div class="card-img-container">
+                        <img src="images/teleTangle.png" alt="Tele-Tangle Gameplay">
+                        <div class="media-label" style="top: 10px; left: 10px;">Magara Jam 2023</div>
+                    </div>
+                    <div class="card-body-content">
+                        <div>
+                            <div class="card-badge-line">
+                                <span class="badge-retro badge-pink">Top 15 Finalist</span>
+                                <span class="badge-retro badge-cream">Puzzle Platformer</span>
+                            </div>
+                            <h4 class="card-title">Tele-Tangle</h4>
+                            <p class="card-desc">Puzzle game about little characters inside a TV who realize they're on television and try to escape using channel-swapping mechanics.</p>
+                        </div>
+                        <div class="card-footer-action">
+                            <a href="https://www.youtube.com/watch?v=tudnEqQtf-I" target="_blank" class="btn-retro btn-purple" style="width: 100%;">
+                                📺 Watch Project
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3: Fruit Jammin' -->
+                <div class="project-retro-card jam-card-0 reveal-node">
+                    <div class="card-img-container">
+                        <img src="images/fruitJammin.png" alt="Fruit Jammin Gameplay">
+                        <div class="media-label" style="top: 10px; left: 10px;">Magara Jam #4</div>
+                    </div>
+                    <div class="card-body-content">
+                        <div>
+                            <div class="card-badge-line">
+                                <span class="badge-retro badge-yellow">🏅 5th Best Game</span>
+                                <span class="badge-retro badge-pink">🎵 Best Sound Design</span>
+                            </div>
+                            <h4 class="card-title">Fruit Jammin'</h4>
+                            <p class="card-desc">Cozy puzzle-platformer about a young bat bassist who can convert sound frequencies into illuminated platforms.</p>
+                        </div>
+                        <div class="card-footer-action">
+                            <a href="https://mercanarapoglu.itch.io/fruit-jammin" target="_blank" class="btn-retro btn-purple" style="width: 100%;">
+                                🎮 Play Game
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4: Paratrain -->
+                <div class="project-retro-card jam-card-0 reveal-node">
+                    <div class="card-img-container">
+                        <img src="images/paratrain.png" alt="Paratrain Gameplay">
+                        <div class="media-label" style="top: 10px; left: 10px;">Special Invitational Jam</div>
+                    </div>
+                    <div class="card-body-content">
+                        <div>
+                            <div class="card-badge-line">
+                                <span class="badge-retro badge-cream">Infinite Runner</span>
+                                <span class="badge-retro badge-purple">Invite Only</span>
+                            </div>
+                            <h4 class="card-title">Paratrain</h4>
+                            <p class="card-desc">An runner set on a space train where you survive randomly generated paradoxes and avoid space lasers.</p>
+                        </div>
+                        <div class="card-footer-action">
+                            <a href="https://yusplay.itch.io/paratrain" target="_blank" class="btn-retro btn-purple" style="width: 100%;">
+                                🎮 Play Game
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- PROTOTYPES & SCHOOL PROJECTS SECTION (Slide 11 Style + Grid) -->
+    <section class="section-padding" id="prototypes">
+        <div class="container">
+            
+            <div class="section-header reveal-node">
+                <h2 class="section-title">Prototypes & Experiments</h2>
+                <p style="font-size: 1.1rem; opacity: 0.7;">Technical tests, academic experiments, and quick gameplay prototypes</p>
+            </div>
+
+            <!-- Slide 11 Featured: Metro The Carrier -->
+            <div class="slide-panel reveal-node" style="margin-bottom: 60px;">
+                <div class="slide-content-block brown">
+                    <span class="slide-tag">School VR Project</span>
+                    <h3 class="slide-title">Metro The Carrier</h3>
+                    <p class="slide-desc">
+                        A fast-paced VR rail shooter and survival horror experience. You are locked on a moving subway wagon... and everything is trying to derail you.
+                    </p>
+                    
+                    <ul class="slide-bullet-list">
+                        <li>Coded physical lever interactions for wagon speed control</li>
+                        <li>Designed environment puzzle triggers and responsive shoot boxes</li>
+                        <li>Fully interactive physics-based VR interface in Unity</li>
+                    </ul>
+
+                    <p style="font-weight: 600; color: var(--accent-yellow); margin-bottom: 15px;">Role: Game Designer & Programmer</p>
+                </div>
+                
+                <div class="slide-media-block">
+                    <div class="media-label">VR Horror Game</div>
+                    <div class="media-container-retro">
+                        <img src="images/vrHorror.gif" alt="VR Metro The Carrier Horror GIF">
+                    </div>
+                    <div class="slide-links">
+                        <a href="https://hilamghost.itch.io/vr-metro-the-carrier" target="_blank" class="btn-retro btn-purple" style="flex: 1;">
+                            🎮 View on Itch.io
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grid of other Prototypes -->
+            <div class="cards-grid-4col">
+                
+                <!-- Prototype: The Pit -->
+                <div class="project-retro-card reveal-node">
+                    <div class="card-img-container">
+                        <img src="images/the_pit.png" alt="The Pit Gameplay Screenshot">
+                    </div>
+                    <div class="card-body-content" style="padding: 16px;">
+                        <div>
+                            <h4 class="card-title" style="font-size: 1.15rem;">The Pit</h4>
+                            <p class="card-desc" style="font-size: 0.85rem;">PSX Horror-themed climbing game. Locked with a chain, escape the pit in a tense 5-minute experience.</p>
+                        </div>
+                        <a href="https://www.youtube.com/watch?v=5vejnuHTn8Q" target="_blank" class="btn-retro" style="font-size: 0.85rem; padding: 6px 12px; width: 100%;">Watch Video</a>
+                    </div>
+                </div>
+
+                <!-- Prototype 1: ParraP -->
+                <div class="project-retro-card reveal-node">
+                    <div class="card-img-container">
+                        <img src="images/ParraP.png" alt="ParraP">
+                    </div>
+                    <div class="card-body-content" style="padding: 16px;">
+                        <div>
+                            <h4 class="card-title" style="font-size: 1.15rem;">ParraP</h4>
+                            <p class="card-desc" style="font-size: 0.85rem;">Puzzle-platformer blending parallel universes. Caroline links parallel spaces to solve levels.</p>
+                        </div>
+                        <a href="https://hilamghost.itch.io/parrap" target="_blank" class="btn-retro" style="font-size: 0.85rem; padding: 6px 12px; width: 100%;">Play Itch</a>
+                    </div>
+                </div>
+
+                <!-- Prototype 2: Bineral Error -->
+                <div class="project-retro-card reveal-node">
+                    <div class="card-img-container">
+                        <img src="images/bineralError.png" alt="Bineral Error">
+                    </div>
+                    <div class="card-body-content" style="padding: 16px;">
+                        <div>
+                            <h4 class="card-title" style="font-size: 1.15rem;">Bineral Error</h4>
+                            <p class="card-desc" style="font-size: 0.85rem;">Experimental puzzle game exploring binary logic, registers, and error correction mechanics.</p>
+                        </div>
+                        <a href="https://hilamghost.itch.io/bineral-error" target="_blank" class="btn-retro" style="font-size: 0.85rem; padding: 6px 12px; width: 100%;">Play Itch</a>
+                    </div>
+                </div>
+
+                <!-- Prototype 3: Camera Shake Prototype -->
+                <div class="project-retro-card reveal-node">
+                    <div class="card-img-container">
+                        <img src="images/cameraShakePrototype.png" alt="Camera Shake Demo">
+                    </div>
+                    <div class="card-body-content" style="padding: 16px;">
+                        <div>
+                            <h4 class="card-title" style="font-size: 1.15rem;">Camera Shake Demo</h4>
+                            <p class="card-desc" style="font-size: 0.85rem;">Technical demonstration showcasing various camera juice shaking profiles and feedback styles.</p>
+                        </div>
+                        <a href="https://hilamghost.itch.io/camera-shake-prototype" target="_blank" class="btn-retro" style="font-size: 0.85rem; padding: 6px 12px; width: 100%;">Try Demo</a>
+                    </div>
+                </div>
+
+                <!-- Prototype 4: Dune Dash -->
+                <div class="project-retro-card reveal-node">
+                    <div class="card-img-container">
+                        <img src="images/duneDash.png" alt="Dune Dash">
+                    </div>
+                    <div class="card-body-content" style="padding: 16px;">
+                        <div>
+                            <h4 class="card-title" style="font-size: 1.15rem;">Dune Dash</h4>
+                            <p class="card-desc" style="font-size: 0.85rem;">An interactive algorithm teaching platformer developed specifically for kids.</p>
+                        </div>
+                        <a href="https://hilamghost.itch.io/dunedash" target="_blank" class="btn-retro" style="font-size: 0.85rem; padding: 6px 12px; width: 100%;">Play Itch</a>
+                    </div>
+                </div>
+
+                <!-- Prototype 5: Survival Horror Map -->
+                <div class="project-retro-card reveal-node">
+                    <div class="card-img-container">
+                        <img src="images/survivalHorrorMap.png" alt="Map system">
+                    </div>
+                    <div class="card-body-content" style="padding: 16px;">
+                        <div>
+                            <h4 class="card-title" style="font-size: 1.15rem;">Survival Horror Map</h4>
+                            <p class="card-desc" style="font-size: 0.85rem;">Atmospheric tech demo for dynamic map rendering interfaces in classic survival horror games.</p>
+                        </div>
+                        <a href="https://hilamghost.itch.io/survival-horror-map-prototype" target="_blank" class="btn-retro" style="font-size: 0.85rem; padding: 6px 12px; width: 100%;">Experience</a>
+                    </div>
+                </div>
+
+                <!-- Prototype 6: Project Space Appointment -->
+                <div class="project-retro-card reveal-node">
+                    <div class="card-img-container">
+                        <img src="images/projectSpace.png" alt="Board Game">
+                    </div>
+                    <div class="card-body-content" style="padding: 16px;">
+                        <div>
+                            <h4 class="card-title" style="font-size: 1.15rem;">Space Appointment</h4>
+                            <p class="card-desc" style="font-size: 0.85rem;">Digital implementation of a ship command board game. Collect cards before opponents.</p>
+                        </div>
+                        <a href="https://hilamghost.itch.io/project-space-appointment-board-game" target="_blank" class="btn-retro" style="font-size: 0.85rem; padding: 6px 12px; width: 100%;">View Game</a>
+                    </div>
+                </div>
+
+                <!-- Prototype 7: Jungle Rescue -->
+                <div class="project-retro-card reveal-node">
+                    <div class="card-img-container">
+                        <img src="images/jungleRescue.png" alt="Jungle Rescue">
+                    </div>
+                    <div class="card-body-content" style="padding: 16px;">
+                        <div>
+                            <h4 class="card-title" style="font-size: 1.15rem;">Jungle Rescue</h4>
+                            <p class="card-desc" style="font-size: 0.85rem;">Storytelling jam project featuring player progress mechanics under strict time limits.</p>
+                        </div>
+                        <a href="https://mercanarapoglu.itch.io/jungle-rescue" target="_blank" class="btn-retro" style="font-size: 0.85rem; padding: 6px 12px; width: 100%;">Play Itch</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- TOOLS & LIBRARIES SECTION (GitHub Utilities) -->
+    <section class="section-padding" style="background-color: var(--bg-white); border-top: var(--border-width) solid var(--color-black); border-bottom: var(--border-width) solid var(--color-black);" id="tools">
+        <div class="container">
+            
+            <div class="section-header reveal-node">
+                <h2 class="section-title">Open Source Tools & Libraries</h2>
+                <p style="font-size: 1.1rem; opacity: 0.7;">Reusable scripts, extensions, and game feel libraries for Unity game developers</p>
+            </div>
+
+            <div class="cards-grid">
+                
+                <!-- Tool 1: Game Feel Practices -->
+                <div class="project-retro-card reveal-node">
+                    <div class="card-img-container">
+                        <img src="images/gameFeel.png" alt="Game Feel Practices Code">
+                    </div>
+                    <div class="card-body-content">
+                        <div>
+                            <h4 class="card-title">Game Feel Practices</h4>
+                            <p class="card-desc">A comprehensive collection of Unity game juice scripts, camera shakes, impact frame controllers, and feedback utilities.</p>
+                        </div>
+                        <a href="https://github.com/HilamGhost/Game-Feel-Practices" target="_blank" class="btn-retro" style="width: 100%;">
+                            🐙 View GitHub Repository
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Tool 2: Sprite Color Analyser -->
+                <div class="project-retro-card reveal-node">
+                    <div class="card-img-container">
+                        <img src="images/spriteColor.png" alt="Color Analyser Tool">
+                    </div>
+                    <div class="card-body-content">
+                        <div>
+                            <h4 class="card-title">Sprite Color Analyser</h4>
+                            <p class="card-desc">Unity editor utility window that extracts sprite pixel statistics and auto-generates cohesive color palettes.</p>
+                        </div>
+                        <a href="https://github.com/HilamGhost/Sprite-Color-Analyser" target="_blank" class="btn-retro" style="width: 100%;">
+                            🐙 View GitHub Repository
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Tool 3: Unity Rich Text Extensions -->
+                <div class="project-retro-card reveal-node">
+                    <div class="card-img-container">
+                        <img src="images/richText.png" alt="Rich Text tool">
+                    </div>
+                    <div class="card-body-content">
+                        <div>
+                            <h4 class="card-title">Unity Rich Text Extensions</h4>
+                            <p class="card-desc">String extensions to dynamically color, bold, size, and wrap tags around GUI elements without syntax strings.</p>
+                        </div>
+                        <a href="https://github.com/HilamGhost/String-Extensions-For-Unity-Rich-Texts" target="_blank" class="btn-retro" style="width: 100%;">
+                            🐙 View GitHub Repository
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Tool 4: 2D Overlap Cone -->
+                <div class="project-retro-card reveal-node">
+                    <div class="card-img-container">
+                        <img src="images/overlapCone.gif" alt="Cone Extension demonstration">
+                    </div>
+                    <div class="card-body-content">
+                        <div>
+                            <h4 class="card-title">2D Overlap Cone Extension</h4>
+                            <p class="card-desc">Unity physics expansion providing cone-shaped area overlaps, perfect for implementing directional enemy vision.</p>
+                        </div>
+                        <a href="https://github.com/HilamGhost/2D-Overlap-Cone-Extension-For-Unity" target="_blank" class="btn-retro" style="width: 100%;">
+                            🐙 View GitHub Repository
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Tool 5: Parabolic Raycast -->
+                <div class="project-retro-card reveal-node">
+                    <div class="card-img-container">
+                        <img src="images/parabolicRaycast.png" alt="Raycast representation">
+                    </div>
+                    <div class="card-body-content">
+                        <div>
+                            <h4 class="card-title">Parabolic Raycast Extension</h4>
+                            <p class="card-desc">Extension adding curved physics casts, ideal for predicting realistic projectile trajectories and grenade arcs.</p>
+                        </div>
+                        <a href="https://github.com/HilamGhost/ParabolicRaycast" target="_blank" class="btn-retro" style="width: 100%;">
+                            🐙 View GitHub Repository
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Tool 6: Simple Object Pooling -->
+                <div class="project-retro-card reveal-node">
+                    <div class="card-img-container">
+                        <img src="images/objectPooling.png" alt="Pooling script">
+                    </div>
+                    <div class="card-body-content">
+                        <div>
+                            <h4 class="card-title">Simple Object Pooling</h4>
+                            <p class="card-desc">A simple, performance-focused object caching manager designed to eliminate garbage collection in spawning games.</p>
+                        </div>
+                        <a href="https://github.com/HilamGhost/Object-Pooling" target="_blank" class="btn-retro" style="width: 100%;">
+                            🐙 View GitHub Repository
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Tool 7: State Manager -->
+                <div class="project-retro-card reveal-node">
+                    <div class="card-img-container">
+                        <img src="images/stateMachine.png" alt="State machine representation">
+                    </div>
+                    <div class="card-body-content">
+                        <div>
+                            <h4 class="card-title">Generic State Manager</h4>
+                            <p class="card-desc">Decoupled state machine framework to solve condition spaghetti code in player behaviors.</p>
+                        </div>
+                        <a href="https://github.com/HilamGhost/Generic-State-Manager" target="_blank" class="btn-retro" style="width: 100%;">
+                            🐙 View GitHub Repository
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- TIMELINE & ABOUT SECTION -->
+    <section class="section-padding" id="about">
+        <div class="container">
+            
+            <div class="section-header reveal-node">
+                <h2 class="section-title">Education & Experience</h2>
+                <p style="font-size: 1.1rem; opacity: 0.7;">My academic achievements, professional track, and leadership roles</p>
+            </div>
+
+            <!-- TIMELINE -->
+            <div class="timeline-container">
+                
+                <!-- Node 1: BAU (Education) -->
+                <div class="timeline-node reveal-node">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content-card">
+                        <span class="timeline-date">2022 - 2026</span>
+                        <h4 class="timeline-role font-heading">Digital Game Design</h4>
+                        <div class="timeline-org">Bahçeşehir University</div>
+                        <p class="timeline-body">
+                            Full Scholarship recipient studying core gameplay design, systems architecture, rapid prototyping, and interactive design. Specializing in technical script integration.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Node 2: Nowhere Studios (Experience) -->
+                <div class="timeline-node left-side reveal-node">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content-card">
+                        <span class="timeline-date">Dec 2023 - Jun 2024</span>
+                        <h4 class="timeline-role font-heading">Game Programming Intern</h4>
+                        <div class="timeline-org">Nowhere Studios</div>
+                        <p class="timeline-body">
+                            Integrated into the primary development team for "Good Heavens!". Re-designed modular UI canvases and polished controller feedback systems (shakes, hits).
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Node 3: BUG Zone (Leadership) -->
+                <div class="timeline-node reveal-node">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content-card">
+                        <span class="timeline-date">Dec 2022 - Apr 2024</span>
+                        <h4 class="timeline-role font-heading">Founder & Lead Coordinator</h4>
+                        <div class="timeline-org">BUG Zone (Student Club)</div>
+                        <p class="timeline-body">
+                            Organized student conferences, local game jams (Halloween Jam, GGJ), and workshops. Connected 300+ students with local game industry professionals.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Node 4: GGJ Workshop (Teaching) -->
+                <div class="timeline-node left-side reveal-node">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content-card">
+                        <span class="timeline-date">Global Game Jam 2025</span>
+                        <h4 class="timeline-role font-heading">Unity Workshop Speaker</h4>
+                        <div class="timeline-org">Global Game Jam @ BUG</div>
+                        <p class="timeline-body">
+                            Developed and presented technical guidelines for rapid prototyping under tight jam limitations, focusing on clean script states and juice mechanics.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- COMMUNITY EVENTS SECTION (Page 12 Style) -->
+            <div style="margin-top: 80px;">
+                <h3 class="font-heading text-retro-shadow-white" style="font-size: 2rem; margin-bottom: 30px; text-align: center;">Community Work & Representation</h3>
+                
+                <div class="gallery-block">
+                    
+                    <div class="event-card reveal-node">
+                        <div class="event-card-img">
+                            <img src="images/BugLab.png" alt="BUG Lab graduation">
+                        </div>
+                        <div class="event-card-body">
+                            <h4 class="event-card-title font-heading">Crab 9 TEKMER Incubator</h4>
+                            <p class="event-card-role">Best Team Award</p>
+                            <p class="event-card-desc">Graduated the BUG Lab TEKMER pre-incubation program as the top performing development team.</p>
+                        </div>
+                    </div>
+
+                    <div class="event-card reveal-node">
+                        <div class="event-card-img">
+                            <img src="images/LoC.png" alt="Land of crescent speaker">
+                        </div>
+                        <div class="event-card-body">
+                            <h4 class="event-card-title font-heading">Land Of The Crescent</h4>
+                            <p class="event-card-role">Young Blood Speaker</p>
+                            <p class="event-card-desc">Presented the dev post-mortem and production hurdles for Unfortunate Tales of Violet to a gaming audience.</p>
+                        </div>
+                    </div>
+
+                    <div class="event-card reveal-node">
+                        <div class="event-card-img">
+                            <img src="images/zoneTalks.png" alt="Zone Talks organizer">
+                        </div>
+                        <div class="event-card-body">
+                            <h4 class="event-card-title font-heading">Zone Talks #1</h4>
+                            <p class="event-card-role">Event & Stand Coordinator</p>
+                            <p class="event-card-desc">Coordinated exhibition layout and indie developer stands for one of the largest student-developer summits.</p>
+                        </div>
+                    </div>
+
+                    <div class="event-card reveal-node">
+                        <div class="event-card-img">
+                            <img src="images/sgf.png" alt="SGF Nominee badge">
+                        </div>
+                        <div class="event-card-body">
+                            <h4 class="event-card-title font-heading">Student Game Festival</h4>
+                            <p class="event-card-role">Nominee Team</p>
+                            <p class="event-card-desc">Selected as finalist and nominated for Best Student Game at SGF 2025.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER SECTION (Page 13 Style) -->
+    <footer class="footer-section">
+        <div class="container">
+            <div class="footer-slide-box reveal-node">
+                <h2 class="footer-title">THANK YOU!</h2>
+                <p class="footer-subtitle">For your time</p>
+                
+                <!-- Email container with copy interaction -->
+                <div class="email-copy-container">
+                    <span class="email-text">mert.erdogan789@gmail.com</span>
+                    <button class="btn-copy" id="copy-email-btn" title="Copy to clipboard">📋</button>
+                    <span class="copy-tooltip" id="copy-tooltip">Copied!</span>
+                </div>
+
+                <div class="footer-socials">
+                    <a href="mailto:mert.erdogan789@gmail.com" class="btn-retro btn-yellow">📧 Send Email</a>
+                    <a href="https://www.linkedin.com/in/hilamghost/" target="_blank" class="btn-retro btn-purple">💼 LinkedIn</a>
+                    <a href="https://github.com/HilamGhost" target="_blank" class="btn-retro">🐙 GitHub</a>
+                    <a href="https://hilamghost.itch.io/" target="_blank" class="btn-retro btn-yellow">🎮 Itch.io</a>
+                </div>
+            </div>
+            
+            <p class="footer-copyright">
+                &copy; 2026 Mert Erdogan. Built in the game UI visual styling matching the portfolio layout.
+            </p>
+        </div>
+    </footer>
+
+    <!-- INTERACTION LOGIC & SCROLL ANIMS -->
     <script>
-        // Create floating particles
-        function createParticles() {
-            const particlesContainer = document.getElementById('particles');
-            const particleCount = 50;
+        // SCROLL REVEAL OBSERVER
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
 
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.classList.add('particle');
-                
-                // Random position
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.top = Math.random() * 100 + '%';
-                
-                // Random animation delay
-                particle.style.animationDelay = Math.random() * 6 + 's';
-                
-                particlesContainer.appendChild(particle);
-            }
-        }
-
-        // Scroll animation observer
-        function setupScrollAnimations() {
-            const observer = new IntersectionObserver((entries) => {
+            const observer = new IntersectionObserver((entries, obs) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
                     }
                 });
-            }, {
-                threshold: 0.1
-            });
+            }, observerOptions);
 
-            document.querySelectorAll('.fade-in').forEach(el => {
+            document.querySelectorAll('.reveal-node').forEach(el => {
                 observer.observe(el);
             });
-        }
 
-        // Initialize everything
-        document.addEventListener('DOMContentLoaded', () => {
-            createParticles();
-            setupScrollAnimations();
-            
-            // Add visible class to header immediately
-            document.querySelector('.header').classList.add('visible');
-        });
+            // Trigger hero nodes immediately
+            setTimeout(() => {
+                document.querySelectorAll('.hero-section .reveal-node').forEach(el => {
+                    el.classList.add('visible');
+                });
+            }, 100);
 
-        // Smooth scrolling for internal links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
+            // ACTIVE NAV LINK TRACKING
+            const sections = document.querySelectorAll('section, footer');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (pageYOffset >= (sectionTop - 200)) {
+                        const id = section.getAttribute('id');
+                        if (id) current = id;
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').slice(1) === current) {
+                        link.classList.add('active');
+                    }
+                });
             });
+
+            // EMAIL COPY INTERACTION
+            const copyBtn = document.getElementById('copy-email-btn');
+            const tooltip = document.getElementById('copy-tooltip');
+            
+            if (copyBtn) {
+                copyBtn.addEventListener('click', () => {
+                    navigator.clipboard.writeText('mert.erdogan789@gmail.com').then(() => {
+                        tooltip.classList.add('show');
+                        setTimeout(() => {
+                            tooltip.classList.remove('show');
+                        }, 2000);
+                    }).catch(err => {
+                        console.error('Failed to copy text: ', err);
+                    });
+                });
+            }
         });
     </script>
 </body>
